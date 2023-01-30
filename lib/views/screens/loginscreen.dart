@@ -2,14 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:homestayraya/views/registrationscreen.dart';
+import 'package:homestayraya/views/screens/registrationscreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 import '../../config.dart';
 import '../../models/user.dart';
-import 'mainscreen.dart';
-import 'userscreen.dart';
+import 'buyerscreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -161,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     String _email = _emailEditingController.text;
     String _pass = _passEditingController.text;
-    http.post(Uri.parse("${Config.SERVER}/php/login_user.php"),
+    http.post(Uri.parse("${SvConfig.SERVER}/php/login_user.php"),
         body: {"email": _email, "password": _pass}).then((response) {
       print(response.body);
       var jsonResponse = json.decode(response.body);
@@ -170,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
         User user = User.fromJson(jsonResponse['data']);
         print(user.phone);
         Navigator.push(context,
-        MaterialPageRoute(builder: (content) => const UserScreen()));
+        MaterialPageRoute(builder: (content) => BuyerScreen(user: user,)));
       } else {
         Fluttertoast.showToast(
             msg: "Login Failed",
@@ -189,9 +188,10 @@ class _LoginScreenState extends State<LoginScreen> {
         name: "unregistered",
         address: "na",
         phone: "0123456789",
-        regdate: "0");
+        regdate: "0", 
+        credit: '0');
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (content) => const MainScreen()));
+        context, MaterialPageRoute(builder: (content) => BuyerScreen(user: user)));
   }
 
   void _goSignUp() {

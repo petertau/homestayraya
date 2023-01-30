@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:homestayraya/views/splashscreen.dart';
+import 'package:homestayraya/views/screens/splashscreen.dart';
 
 void main() => runApp(const MyApp());
 
