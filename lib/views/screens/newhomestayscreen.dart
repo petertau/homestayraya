@@ -77,7 +77,6 @@ class _NewHomeStayScreenState extends State<NewHomeStayScreen> {
                         decoration: BoxDecoration(
                             image: DecorationImage(
                            image: _imageList.length > 0
-                              
                               ? FileImage(_imageList[0]) as ImageProvider
                               : AssetImage(pathAsset),
                           fit: BoxFit.cover,

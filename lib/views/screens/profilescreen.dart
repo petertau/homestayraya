@@ -10,7 +10,6 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:homestayraya/config.dart';
-import 'package:ndialog/ndialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/user.dart';
 import '../shared/mainmenu.dart';
@@ -30,14 +29,13 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   late double screenHeight, screenWidth, resWidth;
   File? _image;
-  var pathAsset = "assets/profileimages/profile.png";
+  var pathAsset = "assets/images/profile.png";
   final df = DateFormat('dd/MM/yyyy');
   var val = 50;
 
   bool isDisable = false;
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
-  //final TextEditingController _addressController = TextEditingController();
   final TextEditingController _oldpasswordController = TextEditingController();
   final TextEditingController _newpasswordController = TextEditingController();
   Random random = Random();
@@ -209,13 +207,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             const Divider(
                               height: 2,
                             ),
-                            // MaterialButton(
-                            //   onPressed: isDisable ? null : buyCreditPage,
-                            //   child: const Text("BUY CREDIT"),
-                            // ),
-                            // const Divider(
-                            //   height: 2,
-                            // ),
                             MaterialButton(
                               onPressed: isDisable ? null : _logoutDialog,
                               child: const Text("LOGOUT"),
@@ -231,7 +222,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  // void buyCreditPage() {}
 
   void _registerAccountDialog() {
     showDialog(
@@ -670,63 +660,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       },
     );
   }
-
-  // void _updateAddressDialog() {
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       // return object of type Dialog
-  //       return AlertDialog(
-  //         shape: const RoundedRectangleBorder(
-  //             borderRadius: BorderRadius.all(Radius.circular(20.0))),
-  //         title: const Text(
-  //           "Change Address?",
-  //           style: TextStyle(),
-  //         ),
-  //         content: Column(
-  //           mainAxisSize: MainAxisSize.min,
-  //           children: [
-  //             TextFormField(
-  //               minLines: 6,
-  //               maxLines: 6,
-  //               controller: _addressController,
-  //               decoration: InputDecoration(
-  //                   labelText: 'Home Address',
-  //                   border: OutlineInputBorder(
-  //                       borderRadius: BorderRadius.circular(5.0))),
-  //               validator: (value) {
-  //                 if (value == null || value.isEmpty) {
-  //                   return 'Please enter your home address';
-  //                 }
-  //                 return null;
-  //               },
-  //             ),
-  //           ],
-  //         ),
-  //         actions: <Widget>[
-  //           TextButton(
-  //             child: const Text(
-  //               "Yes",
-  //               style: TextStyle(),
-  //             ),
-  //             onPressed: () {
-  //               Navigator.of(context).pop();
-  //             },
-  //           ),
-  //           TextButton(
-  //             child: const Text(
-  //               "No",
-  //               style: TextStyle(),
-  //             ),
-  //             onPressed: () {
-  //               Navigator.of(context).pop();
-  //             },
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
 
   void _logoutDialog() {
     showDialog(
